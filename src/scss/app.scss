@@ -4,17 +4,18 @@
 @import '~normalize.css';
 
 // global's styles
-@import 'variables';
-@import 'global';
 
-// pages's styles
-@import 'header/header'
-
-// component's styles
+@import 'global/global';
 
 
 // shared's styles base
-
+@import 'shared/titles';
 
   
 // shared's styles additionals
+
+// pages's styles
+@import 'pages/header/header';
+
+// component's styles
+
