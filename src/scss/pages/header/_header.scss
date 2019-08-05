@@ -1,0 +1,52 @@
+.header {
+  background-color: #1a6313;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  &__body {
+    @extend .g-container ;
+    display: flex;
+  }
+  &__left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  &__center {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  &__right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &__title {
+    color: $white;
+    margin-left: 30px;
+    font-weight: 500;
+  }
+  &__document-name {
+    color: $white;
+  }
+  &__document-save {
+    color: $white;
+  }
+  &__user {
+    color: $white;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  &__exit {
+    display: inline-block;
+    font-size: 12px;
+    color: $white;
+    margin-left: 5px;
+    padding: 0 5px;
+    &:hover {
+      text-decoration: underline #fff;
+    }
+  }
+}
