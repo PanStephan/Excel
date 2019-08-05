@@ -1,0 +1,66 @@
+$font-family: 'Muli', sans-serif !default;
+
+@font-face {
+  font-family: 'Muli';
+  src: url('../fonts/Muli-Bold.eot');
+  src: url('../fonts/Muli-Bold.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/Muli-Bold.woff') format('woff'),
+  url('../fonts/Muli-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muli';
+  src: url('../fonts/Muli-Regular.eot');
+  src: url('../fonts/Muli-Regular.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/Muli-Regular.woff') format('woff'),
+  url('../fonts/Muli-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//    mixins    //
+
+@mixin center {
+  display: flex;
+  align-items: center;
+}
+
+
+
+//    colors    //
+
+$black--light: #1f1f1f;
+
+$black: #000;
+
+$red: #ee2c2c;
+
+$green: #54C342;
+
+$blue: #1F74F1;
+
+$white: #fff;
+
+$grey--extraLight: #FBFBFB;
+
+$grey--light: #E6E6E6;
+
+$grey--dark: #7c7c7c;
+
+$grey: #A7A7A7;
+
+
+//    time    // 
+
+$transitioTime--default: .3s;
+
+
+//    z-index    //
+
+$z-index1: 5;
+
+$z-index2: 10;
+
+$z-index3: 15;
