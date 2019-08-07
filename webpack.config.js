@@ -37,6 +37,16 @@ config.module.rules.push({
     use: ["pug-loader"] 
 })
 
+// config.module.rules.push({
+//   rules: [
+//     {
+//       test: /\.js$/,
+//       loader: "babel-loader",
+//       exclude: /(node_modules)/
+//     }
+//   ]
+// })
+
 config.module.rules.push({ 
     test: /\.(sa|sc|c)ss$/i, 
     use: ExtractTextPlugin.extract({ 
