@@ -1,0 +1,38 @@
+.table-body {
+  &__grid-area {
+    display: flex;
+  }
+  &__blocks {
+    display: flex;
+  }
+}
+
+.empty-tab {
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  background-color: $grey--light;
+}
+
+.word-counter {
+  display: flex;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 1px solid $black;
+  height: 20px;
+  width: 60px;
+  &--grey {
+    height: 35px;
+    width: 60px;
+    background-color: $grey--light;
+  }
+  &--small {
+    height: 20px;
+    width: 35px;
+  }
+}
+
