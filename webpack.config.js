@@ -56,10 +56,11 @@ config.module.rules.push({
 })
 
 config.module.rules.push({ 
-    test: /\.(ttf|eot|woff|woff2)$/,
+    test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader',
       options: {
-      name: 'fonts/[name].[ext]'
+      name: '[name].[ext]',
+      outputPath: 'fonts/'
     }
 })
 
