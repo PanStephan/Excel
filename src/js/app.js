@@ -1,1 +1,1 @@
-import './desktop/tableSizeController';
+import './tableSizeController';
