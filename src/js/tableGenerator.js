@@ -14,7 +14,7 @@ for(let i = 0; i < NumbersOrWordsLenght; i++) {
     let createСellEL = document.createElement('span');
 
     createСellEL.classList.add('tab');
-    createСellEL.setAttribute("contenteditable", "true" );
+    createСellEL.setAttribute('contenteditable', 'true' );
     createСellEL.id = `js-table-body-${i}-${j}`;
     createEL.appendChild(createСellEL);
   }
@@ -43,12 +43,12 @@ createWordAndNumberPlate(
   'js-word-counter', 
   ['tab', 'tab--grey'],
   'js-word',
-  ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"]
+  ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O']
 );
 
 createWordAndNumberPlate(
   'js-number-counter', 
   ['tab', 'tab--small', 'tab--grey'],
   'js-number',
-  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
 );
