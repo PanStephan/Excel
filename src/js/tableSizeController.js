@@ -1,166 +1,137 @@
-const tableBodyEL = document.getElementById('js-table-body-blocks');
 
-for(let i = 0; i < 15; i++) {
+const NumbersOrWordsLenght = 15;
 
-  let createEL = document.createElement('div');
-  
-  
-  for(let j = 0; j < 25; j++) {
+const cellsLenght = 25;
 
-    let createСellEL = document.createElement('span');
-    createСellEL.classList.add('tab');
-    createСellEL.setAttribute("contenteditable", "true" );
+for(let i = 0; i < NumbersOrWordsLenght; i++) {
+    
+  let wordEl = document.getElementById(`js-word-${i}`);
+  resizableGrid(wordEl);
 
-    createСellEL.id = `js-table-body-${i}-${j}`;
-
-    createEL.appendChild(createСellEL);
-
-  }
-
-  tableBodyEL.appendChild(createEL);
+  let numberEl = document.getElementById(`js-number-${i}`);
+  resizableGrid(numberEl);
 
 }
-
-function createWordAndNumberPlate(documentSelector, classNameArray, idName, array) {
-
-  const counterEl = document.getElementById(documentSelector);
-
-  for(let i = 0; i < array.length; i++) {
-
-    let createEL = document.createElement('div');
-
-    createEL.classList.add(...classNameArray);
-    createEL.id = `${idName}-${i}`;
-    createEL.innerHTML = `${array[i]}`;
-    counterEl.appendChild(createEL);
-  }
-
-}
-
-createWordAndNumberPlate(
-  'js-word-counter', 
-  ['tab', 'tab--grey'],
-  'js-word',
-  ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"],
-);
-
-createWordAndNumberPlate(
-  'js-number-counter', 
-  ['tab', 'tab--small', 'tab--grey'],
-  'js-number',
-  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
-);
-
-
-
-
-for(j = 0; j < 15; j++) {
-  
-  let wordEl = document.getElementById(`js-word-${j}`);
-
-  // console.log(wordEl);
-    resizableGrid(wordEl);
-}
-
-function createDiv(height){
-  const div = document.createElement('div');
-  div.style.top = 0;
-  div.style.right = 0;
-  div.style.width = '5px';
-  div.style.position = 'absolute';
-  div.style.cursor = 'col-resize';
-  div.style.userSelect = 'none';
-  div.style.height = height + 'px';
-  return div;
- }
 
 function resizableGrid(table) {
   
- var tableHeight = table.offsetHeight;
-  
- for (var i = 0; i < 15; i++){
-  
-  let rr = document.getElementById(`js-word-${i}`);
-  const div = createDiv(tableHeight);
-
-  console.log(div);
-  
-  rr.appendChild(div);
-  rr.style.position = 'relative';
-  setListeners(div);
- }
-
- function setListeners(div){
-  var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
-
-  div.addEventListener('mousedown', function (e) {
-   curCol = e.target.parentElement;
-   nxtCol = curCol.nextElementSibling;
-   pageX = e.pageX; 
+  const tableHeight = table.offsetHeight;
  
-   var padding = paddingDiff(curCol);
+  const tableWidht = table.offsetWidth;
+   
+  for (let i = 0; i < NumbersOrWordsLenght; i++){
+   
+   let rr = document.getElementById(`js-word-${i}`);
  
-   curColWidth = curCol.offsetWidth - padding;
-   if (nxtCol)
-    nxtColWidth = nxtCol.offsetWidth - padding;
-  });
-
-  div.addEventListener('mouseover', function (e) {
-   e.target.style.borderRight = '2px solid #0000ff';
-  })
-
-  div.addEventListener('mouseout', function (e) {
-   e.target.style.borderRight = '';
-  })
-
-  document.addEventListener('mousemove', function (e) {
-   if (curCol) {
-    var diffX = e.pageX - pageX;
+   let rrv = document.getElementById(`js-number-${i}`);
  
-    for(let i = 0; i < 15; i++) {
-      for(let j = 0; j < 25; j++) {
-
-    // console.log(e.target.parentElement.id);
-
-    // document.getElementById(e.target.parentElement.id);
-
-
-     if(`js-word-${i}` == e.target.parentElement.id) {
+   const div = createDiv(tableHeight);
+   const div1 = createDiv(tableWidht);
+ 
+   
+   rr.appendChild(div);
+   rr.style.position = 'relative';
+   
+   rrv.appendChild(div1);
+   rrv.style.position = 'relative';
+   setListeners(div);
+   setListeners(div1);
+  }
+ 
+  function setListeners(div) {
+ 
+   let pageX = null,
+       curCol = null,
+       curColWidth = null,
+       curColHeight = null;
+ 
+   div.addEventListener('mousedown', (e) => {
+     
+    curCol = e.target.parentElement;
+    pageX = e.pageX; 
   
-      rv = document.getElementById(`js-table-body-${i}-${j}`);
   
-      rv.style.width = (curColWidth + diffX)+'px';
+    curColWidth = curCol.offsetWidth ;
+    curColHeight = curCol.offsetHeight;
+ 
+   });
+ 
+   div.addEventListener('mouseover', (e) => {
+    e.target.style.borderRight = '2px solid #0000ff';
+   })
+ 
+   div.addEventListener('mouseout', (e) => {
+    e.target.style.borderRight = '';
+   })
+ 
+   document.addEventListener('mousemove', (e) => {
+ 
+    if (curCol) {
+     let diffX = e.pageX - pageX;
+  
+     for(let i = 0; i < NumbersOrWordsLenght; i++) {
+       for(let j = 0; j < cellsLenght; j++) {
+ 
+         if(`js-word-${i}` == e.target.parentElement.id) {
+     
+           const rv = document.getElementById(`js-table-body-${i}-${j}`);
+         
+           rv.style.width = (curColWidth + diffX)+'px';
+ 
+         }
+ 
+         if(`js-number-${i}` == e.target.parentElement.id) {
+           
+           const rv = document.getElementById(`js-table-body-${i}-${j}`);
+         
+           rv.style.height = (curColHeight + diffX)+'px';
+ 
+         }
+ 
+       }
+ 
+      const iy = document.getElementById('js-number-counter'),
+            ix = document.getElementById('js-word-counter');
+ 
+       if (iy == e.target.parentElement) {
+         curCol.style.height = (curColHeight + diffX)+'px'; 
+       }
+ 
+       if(ix == e.target.parentElement) {
+         curCol.style.width = (curColWidth + diffX)+'px';
+       }
      }
-      }
     }
-    curCol.style.width = (curColWidth + diffX)+'px';
-
-   }
-  });
-
-  document.addEventListener('mouseup', function (e) { 
-   curCol = null;
-   nxtCol = null;
-   pageX = null;
-   nxtColWidth = null;
-   curColWidth = null
-  });
  
- }
+   });
  
-
+   document.addEventListener('mouseup', () => { 
  
- function paddingDiff(col){
+     curCol = null;
+     pageX = null;
+     curColWidth = null;
+     curColHeight = null;
+ 
+   });
+   
+  }
   
-  var padLeft = getStyleVal(col,'padding-left');
-  var padRight = getStyleVal(col,'padding-right');
-  return (parseInt(padLeft) + parseInt(padRight));
-
  }
-
- function getStyleVal(elm,css){
-  return (window.getComputedStyle(elm, null).getPropertyValue(css))
- }
-}
-
+ 
+ function createDiv(height) {
+ 
+   const div = document.createElement('div');
+   
+   div.style.top = 0;
+   div.style.right = 0;
+   div.style.width = '5px';
+   div.style.position = 'absolute';
+   div.style.cursor = 'col-resize';
+   div.style.userSelect = 'none';
+   div.style.height = height + 'px';
+ 
+   return div;
+ 
+  }
+ 
 

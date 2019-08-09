@@ -1,1 +1,2 @@
+import './tableGenerator';
 import './tableSizeController';
