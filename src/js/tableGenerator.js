@@ -1,25 +1,23 @@
-const tableBodyEL = document.getElementById('js-table-body-blocks');
-
-const NumbersOrWordsLenght = 15;
-
-const cellsLenght = 25;
+const tableBodyEL = document.getElementById('js-table-body-blocks'),
+      NumbersOrWordsLenght = 15,
+      cellsLength = 15;
 
 for(let i = 0; i < NumbersOrWordsLenght; i++) {
 
-  let createEL = document.createElement('div');
+  let divEL = document.createElement('div');
   
   
-  for(let j = 0; j < cellsLenght; j++) {
+  for(let j = 0; j < cellsLength; j++) {
 
     let createСellEL = document.createElement('span');
 
     createСellEL.classList.add('tab');
     createСellEL.setAttribute('contenteditable', 'true' );
     createСellEL.id = `js-table-body-${i}-${j}`;
-    createEL.appendChild(createСellEL);
+    divEL.appendChild(createСellEL);
   }
 
-  tableBodyEL.appendChild(createEL);
+  tableBodyEL.appendChild(divEL);
 
 }
 
@@ -29,12 +27,12 @@ function createWordAndNumberPlate(documentSelector, classNameArray, idName, arra
 
   for(let i = 0; i < array.length; i++) {
 
-    let createEL = document.createElement('div');
+    let divEL = document.createElement('div');
 
-    createEL.classList.add(...classNameArray);
-    createEL.id = `${idName}-${i}`;
-    createEL.innerHTML = `${array[i]}`;
-    counterEl.appendChild(createEL);
+    divEL.classList.add(...classNameArray);
+    divEL.id = `${idName}-${i}`;
+    divEL.innerHTML = `${array[i]}`;
+    counterEl.appendChild(divEL);
   }
 
 }
