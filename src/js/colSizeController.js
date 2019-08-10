@@ -1,9 +1,9 @@
 
 
-  const NumbersOrWordsLenght = 15,
-  cellsLength = 15;
+  const NUMBERS_WORDS_LENGTH = 15,
+  CELLS_LENGTH = 15;
 
-for(let i = 0; i < NumbersOrWordsLenght; i++) {
+for(let i = 0; i < NUMBERS_WORDS_LENGTH; i++) {
 
   let wordEl = document.getElementById(`js-word-${i}`);
   resizableGrid(wordEl);
@@ -14,7 +14,7 @@ function resizableGrid(table) {
 
   const tableHeight = table.offsetHeight;
 
-  for (let i = 0; i < NumbersOrWordsLenght; i++){
+  for (let i = 0; i < NUMBERS_WORDS_LENGTH; i++){
 
     let wordEl = document.getElementById(`js-word-${i}`);
 
@@ -56,8 +56,8 @@ function setListeners(divEL) {
     if (curCol) {
       let diffX = e.pageX - pageX;
 
-      for(let i = 0; i < NumbersOrWordsLenght; i++) {
-        for(let j = 0; j < cellsLength; j++) {
+      for(let i = 0; i < NUMBERS_WORDS_LENGTH; i++) {
+        for(let j = 0; j < CELLS_LENGTH; j++) {
 
           if(`js-word-${i}` == e.target.parentElement.id) {
       

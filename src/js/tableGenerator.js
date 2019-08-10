@@ -1,13 +1,13 @@
 const tableBodyEL = document.getElementById('js-table-body-blocks'),
-      NumbersOrWordsLenght = 15,
-      cellsLength = 15;
+      NUMBERS_WORDS_LENGTH = 15,
+      CELLS_LENGTH = 15;
 
-for(let i = 0; i < NumbersOrWordsLenght; i++) {
+for(let i = 0; i < NUMBERS_WORDS_LENGTH; i++) {
 
   let divEL = document.createElement('div');
   
   
-  for(let j = 0; j < cellsLength; j++) {
+  for(let j = 0; j < CELLS_LENGTH; j++) {
 
     let createСellEL = document.createElement('span');
 
