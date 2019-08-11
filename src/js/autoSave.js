@@ -24,12 +24,15 @@ for(let i = 0; i < NUMBERS_WORDS_LENGTH; i++) {
     wordEl = document.getElementById(`js-word-${i}`),
     numberEl = document.getElementById(`js-number-${i}`);
 
+    try {
+      tableBodyEl.style.height = JSON.parse(localStorage.getItem('numberEl'+[j])) + 'px';
+      numberEl.style.height = JSON.parse(localStorage.getItem('numberEl'+[i])) + 'px';
 
-    tableBodyEl.style.height = JSON.parse(localStorage.getItem('numberEl'+[j])) + 'px';
-    numberEl.style.height = JSON.parse(localStorage.getItem('numberEl'+[i])) + 'px';
-
-    tableBodyEl.style.width = JSON.parse(localStorage.getItem('wordEl'+[i])) + 'px';
-    wordEl.style.width = JSON.parse(localStorage.getItem('wordEl'+[i])) + 'px';
+      tableBodyEl.style.width = JSON.parse(localStorage.getItem('wordEl'+[i])) + 'px';
+      wordEl.style.width = JSON.parse(localStorage.getItem('wordEl'+[i])) + 'px';
+    } catch (e) {
+      console.error(e);
+    }
 
   }
 }
