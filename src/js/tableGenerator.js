@@ -1,52 +1,65 @@
-const tableBodyEL = document.getElementById('js-table-body-blocks'),
-      NumbersOrWordsLenght = 15,
-      cellsLength = 15;
+import { ROWS_LENGTH, COLUMNS_LENGTH } from './variables';
 
-for(let i = 0; i < NumbersOrWordsLenght; i++) {
+function createTable(rows, columns) {
 
-  let divEL = document.createElement('div');
-  
-  
-  for(let j = 0; j < cellsLength; j++) {
-
-    let createСellEL = document.createElement('span');
-
-    createСellEL.classList.add('tab');
-    createСellEL.setAttribute('contenteditable', 'true' );
-    createСellEL.id = `js-table-body-${i}-${j}`;
-    divEL.appendChild(createСellEL);
+  const tableBodyEL = document.getElementById('js-table-body-blocks')
+  for (let i = 0; i < rows; i++) {
+    const divEl = document.createElement('div');
+    for (let j = 0; j < columns; j++) {
+      const createCellEl = document.createElement('span');
+      createCellEl.classList.add('tab');
+      createCellEl.setAttribute('contenteditable', 'true' );
+      createCellEl.setAttribute('data-col', i.toString() );
+      createCellEl.setAttribute('data-row', j.toString() );
+      createCellEl.id = `js-table-body-${i}-${j}`;
+      divEl.appendChild(createCellEl);
+    }
+    tableBodyEL.appendChild(divEl);
   }
-
-  tableBodyEL.appendChild(divEL);
-
 }
 
-function createWordAndNumberPlate(documentSelector, classNameArray, idName, array) {
+function createTableHead( documentSelector, classNames, idName, datum ) {
 
   const counterEl = document.getElementById(documentSelector);
-
-  for(let i = 0; i < array.length; i++) {
-
-    let divEL = document.createElement('div');
-
-    divEL.classList.add(...classNameArray);
-    divEL.id = `${idName}-${i}`;
-    divEL.innerHTML = `${array[i]}`;
-    counterEl.appendChild(divEL);
+  switch (datum) {
+    case 'vertical-line':
+      for (let i = 0; i < COLUMNS_LENGTH; i++) {
+        const divEl = document.createElement('div');
+        const UpperCaseWords = String.fromCharCode(97 + i).toUpperCase();
+        divEl.classList.add(...classNames);
+        // divEl.id = `${idName}-${i}`;
+        divEl.innerHTML = `${UpperCaseWords} <div data-resize-vertical=${i} id=resize-vertical-${i} class="${datum}"></div>`;
+        counterEl.appendChild(divEl);
+      }
+      break;
+    case 'horizontal-line':
+      for (let i = 0; i < ROWS_LENGTH; i++) {
+        const divEl = document.createElement('div');
+        divEl.classList.add(...classNames);
+        // divEl.id = `${idName}-${i}`;
+        divEl.innerHTML = `${i+1} <div data-resize-horizontal=${i} class="${datum}"></div>`;
+        counterEl.appendChild(divEl);
+      }
+      break;
+    default:
+      alert('bad datum value');
+      break;
   }
-
 }
 
-createWordAndNumberPlate(
-  'js-word-counter', 
+
+createTable(ROWS_LENGTH, COLUMNS_LENGTH);
+
+createTableHead(
+  'js-word-counter',
   ['tab', 'tab--grey'],
   'js-word',
-  ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O']
+  'vertical-line'
 );
 
-createWordAndNumberPlate(
-  'js-number-counter', 
+createTableHead(
+  'js-number-counter',
   ['tab', 'tab--small', 'tab--grey'],
   'js-number',
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
+  'horizontal-line'
 );
