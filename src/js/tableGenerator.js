@@ -9,6 +9,8 @@ function createTable(rows, columns) {
       const createCellEl = document.createElement('span');
       createCellEl.classList.add('tab');
       createCellEl.setAttribute('contenteditable', 'true' );
+      createCellEl.setAttribute('data-col', i.toString() );
+      createCellEl.setAttribute('data-row', j.toString() );
       createCellEl.id = `js-table-body-${i}-${j}`;
       divEl.appendChild(createCellEl);
     }
@@ -22,8 +24,8 @@ function createTableHead( documentSelector, classNames, idName, datum ) {
   switch (datum) {
     case 'vertical-line':
       for (let i = 0; i < COLUMNS_LENGTH; i++) {
-        const divEl = document.createElement('div');    
-        const UpperCaseWords = String.fromCharCode(97+i).toUpperCase(); 
+        const divEl = document.createElement('div');
+        const UpperCaseWords = String.fromCharCode(97 + i).toUpperCase();
         divEl.classList.add(...classNames);
         // divEl.id = `${idName}-${i}`;
         divEl.innerHTML = `${UpperCaseWords} <div data-resize-vertical=${i} id=resize-vertical-${i} class="${datum}"></div>`;
@@ -39,7 +41,7 @@ function createTableHead( documentSelector, classNames, idName, datum ) {
         counterEl.appendChild(divEl);
       }
       break;
-    default: 
+    default:
       alert('bad datum value');
       break;
   }
@@ -49,14 +51,14 @@ function createTableHead( documentSelector, classNames, idName, datum ) {
 createTable(ROWS_LENGTH, COLUMNS_LENGTH);
 
 createTableHead(
-  'js-word-counter', 
+  'js-word-counter',
   ['tab', 'tab--grey'],
   'js-word',
   'vertical-line'
 );
 
 createTableHead(
-  'js-number-counter', 
+  'js-number-counter',
   ['tab', 'tab--small', 'tab--grey'],
   'js-number',
   'horizontal-line'
