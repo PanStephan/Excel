@@ -1,106 +1,122 @@
+import { ROWS_LENGTH, COLUMNS_LENGTH } from './variables';
 
-  const NUMBERS_WORDS_LENGTH = 15,
-  CELLS_LENGTH = 15;
+document.addEventListener('mousedown', onMouseDown);
 
-for(let i = 0; i < NUMBERS_WORDS_LENGTH; i++) {
+function onMouseDown(event) {
 
-  let numberEl = document.getElementById(`js-number-${i}`);
+  // if (!event.target.dataset) return;
 
-  resizableGrid(numberEl);
+  // console.log(event.target.dataset.resizeVertical);
 
-}
-
-function createDiv(width) {
-
-  const divEL = document.createElement('div');
-
-  divEL.style.bottom = 0;
-  divEL.style.left = 0;
-  divEL.style.height = '5px';
-  divEL.style.position = 'absolute';
-  divEL.style.cursor = 'row-resize';
-  divEL.style.userSelect = 'none';
-  divEL.style.width = width + 'px';
-
-  return divEL;
-
-}
-
-function resizableGrid(table) {
-
-  const tableWidth = table.offsetWidth;
-
-  for (let i = 0; i < NUMBERS_WORDS_LENGTH; i++) {
-
-    let numberEl = document.getElementById(`js-number-${i}`);
-
-    let divEL = createDiv(tableWidth);
-
-    numberEl.style.position = 'relative';
-    numberEl.appendChild(divEL);
-
-    setListeners(divEL);
+  if (event.target.dataset.resizeVertical) {
+    // let pageX = event.pageX; 
+    // console.log(pageX);
+    document.addEventListener('mousemove', onMouseMove);
   }
 
-  function setListeners(divEL) {
+  // if (event.target.dataset.) {
+  //   console.log('horizontal');
+  // }
 
-    let pageY = null,
-        curCol = null,
-        curColHeight = null;
+}
 
-    divEL.addEventListener('mousedown', (e) => {
-
-    curCol = e.target.parentElement;
-    pageY = e.pageY; 
-
-
-    curColHeight = curCol.offsetHeight;
-
-  });
-
-  divEL.addEventListener('mouseover', (e) => {
-    e.target.style.borderBottom = '2px solid #0000ff';
-  })
-
-  divEL.addEventListener('mouseout', (e) => {
-    e.target.style.borderBottom = '';
-  })
-
-  document.addEventListener('mousemove', (e) => {
-
+function onMouseMove(e) {
+  // console.log(e);
+  if (e.target.dataset.resizeVertical) {
+    const pageX = e.target.getBoundingClientRect(); 
+    console.log(pageX.right);
+    let curCol = e.target.parentElement;
+    // console.log(curCol);
+    let curColWidth = curCol.offsetWidth;
+    // console.log(curColWidth);
     if (curCol) {
-
-      let diffX = e.pageY - pageY;
-
-      for(let i = 0; i < NUMBERS_WORDS_LENGTH; i++) {
-        for(let j = 0; j < CELLS_LENGTH; j++) {
-
-          if(`js-number-${i}` == e.target.parentElement.id) {
-          
-            let tableBodyEl = document.getElementById(`js-table-body-${j}-${i}`);
-
-            tableBodyEl.style.height = (curColHeight + diffX)+'px';
-
-          }
-
-        }
-
-      curCol.style.height = (curColHeight + diffX)+'px';
-
+      let diffX = pageX.right - e.pageX;
+      console.log(diffX)
+      for(let i = 0; i < COLUMNS_LENGTH; i++) {
+        const tableBodyEl = document.getElementById(`js-table-body-${e.target.dataset.resizeVertical}-${i}`);
+        tableBodyEl.style.width = (curColWidth + diffX)+'px';
       }
+      curCol.style.width = (curColWidth + diffX)+'px';
     }
-
-  });
-
-  document.addEventListener('mouseup', () => { 
-
-    curCol = null;
-    pageY = null;
-    curColHeight = null;
-
-  });
-
+    
   }
 }
 
+document.addEventListener('mouseup', () => {
+  document.removeEventListener('mousemove', onMouseMove);    
+})
 
+// function resizeTable() {
+
+// }
+
+// function resizableGrid(table) {
+
+//   const tableWidth = table.offsetWidth;
+
+//   for (let i = 0; i < COLUMNS_LENGTH; i++) {
+//     setListeners(divEl);
+//   }
+
+//   function setListeners(divEl) {
+
+//     let pageY = null,
+//         curCol = null,
+//         curColHeight = null;
+
+//     divEl.addEventListener('mousedown', (e) => {
+
+//     curCol = e.target.parentElement;
+//     pageY = e.pageY; 
+
+//     curColHeight = curCol.offsetHeight;
+
+//   });
+
+//   document.addEventListener('mousemove', (e) => {
+
+//     if (curCol) {
+
+//       let diffX = e.pageY - pageY;
+
+//       for(let i = 0; i < COLUMNS_LENGTH; i++) {
+//         for(let j = 0; j < ROWS_LENGTH; j++) {
+
+//           if(`js-number-${i}` == e.target.parentElement.id) {
+          
+//             let tableBodyEl = document.getElementById(`js-table-body-${j}-${i}`);
+
+//             tableBodyEl.style.height = (curColHeight + diffX)+'px';
+
+//           }
+
+//         }
+
+//       curCol.style.height = (curColHeight + diffX)+'px';
+
+//       }
+//     }
+
+//   });
+
+//   document.addEventListener('mouseup', () => { 
+
+//     curCol = null;
+//     pageY = null;
+//     curColHeight = null;
+
+//   });
+
+//   }
+// }
+
+  // document.addEventListener('mousemove', (e) => {
+
+  //   if (curCol) {
+  //     let diffX = e.pageX - pageX;
+
+
+
+  //     }
+  //   }
+  // }

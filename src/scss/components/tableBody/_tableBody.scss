@@ -19,10 +19,11 @@
 }
 
 .tab {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: 1px solid $black;
+  border: 1px solid $black;
   height: 20px;
   width: 60px;
   &--grey {
@@ -36,3 +37,26 @@
   }
 }
 
+.vertical-line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 35px;
+  cursor: col-resize;
+  &:hover {
+    background-color: $blue;
+  }
+}
+
+.horizontal-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  cursor: row-resize;
+  width: 35px;
+  &:hover {
+    background-color: $blue;
+  }
+}
