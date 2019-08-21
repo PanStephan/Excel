@@ -1,4 +1,4 @@
-import { autoSave } from './store';
+import { saveState } from './state';
 
 document.addEventListener('mousedown', onMouseDown);
 
@@ -13,9 +13,11 @@ function onMouseDown(event) {
     );
     document.onmousemove = (e) => {
       const diffX = e.pageX - coords.right;
+      const width = curColWidth + diffX;
       columns.forEach((c) => (c.style.width = `${curColWidth + diffX}px`));
-      curCol.style.width = `${curColWidth + diffX}px`;
-      autoSave(target, diffX);
+      curCol.style.width = `${width}px`;
+      saveState('col-state', target.resizeVertical, width);
+      // autoSave(target, width);
     };
   }
   if (event.target.dataset.resizeHorizontal) {
@@ -28,9 +30,11 @@ function onMouseDown(event) {
     );
     document.onmousemove = (e) => {
       const diffY = e.pageY - coords.bottom;
+      const height = curColHeight + diffY;
       rows.forEach((c) => (c.style.height = `${curColHeight + diffY}px`));
-      curCol.style.height = `${curColHeight + diffY}px`;
-      autoSave(target, diffY);
+      curCol.style.height = `${height}px`;
+      saveState('row-state', target.resizeHorizontal, height);
+      // autoSave(target, height);
     };
   }
 }
@@ -38,3 +42,19 @@ function onMouseDown(event) {
 document.addEventListener('mouseup', () => {
   document.onmousemove = null;
 });
+
+// function saveColumnState(col, value) {
+//   const state = localStorage.getItem('col-state')
+//     ? JSON.parse(localStorage.getItem('col-state'))
+//     : {}
+//   state[col] = value;
+//   localStorage.setItem('col-state', JSON.stringify(state))
+// }
+//
+// function saveRowState(row, value) {
+//   const state = localStorage.getItem('row-state')
+//     ? JSON.parse(localStorage.getItem('row-state'))
+//     : {}
+//   state[row] = value;
+//   localStorage.setItem('row-state', JSON.stringify(state))
+// }

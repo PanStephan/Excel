@@ -9,8 +9,7 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "watch": "webpack --mode development --watch",
-    "serve": "webpack-dev-server --mode development --color",
-    "precommit": "lint-staged"
+    "serve": "webpack-dev-server --mode development --color"
   },
   "lint-staged": {
     "src/**/*.js": [

@@ -1,2 +1,2 @@
-import './tableGenerator';
-import './resizeController';
+import "./tableGenerator";
+import "./resizeController";

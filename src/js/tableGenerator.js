@@ -1,4 +1,8 @@
 import { ROWS_LENGTH, COLUMNS_LENGTH } from './variables';
+import { getState } from './state';
+
+const DEFAULT_WIDTH = 100;
+const DEFAULT_HEIGHT = 20;
 
 function createTable(rows, columns) {
   const tableBodyEL = document.getElementById('js-table-body-blocks');
@@ -7,6 +11,8 @@ function createTable(rows, columns) {
     for (let j = 0; j < rows; j++) {
       const createCellEl = document.createElement('div');
       createCellEl.classList.add('tab');
+      createCellEl.style.width = `${getState('col-state', i, DEFAULT_WIDTH)}px`;
+      createCellEl.style.height = `${getState('row-state', j, DEFAULT_HEIGHT)}px`;
       createCellEl.setAttribute('contenteditable', 'true');
       createCellEl.setAttribute('data-col', i.toString());
       createCellEl.setAttribute('data-row', j.toString());
@@ -24,6 +30,7 @@ function createTableHead(documentSelectors, classNames, datum) {
       for (let i = 0; i < COLUMNS_LENGTH; i++) {
         const divEl = document.createElement('div');
         const upperCaseWords = String.fromCharCode(97 + i).toUpperCase();
+        divEl.style.width = `${getState('col-state', i, DEFAULT_WIDTH)}px`;
         divEl.classList.add(...classNames);
         divEl.innerHTML = `${upperCaseWords} <div data-resize-vertical=${i} class='${datum}'></div>`;
         counterEl.appendChild(divEl);
@@ -33,6 +40,7 @@ function createTableHead(documentSelectors, classNames, datum) {
       for (let i = 0; i < ROWS_LENGTH; i++) {
         const divEl = document.createElement('div');
         divEl.classList.add(...classNames);
+        divEl.style.height = `${getState('row-state', i, DEFAULT_HEIGHT)}px`;
         divEl.innerHTML = `${i
           + 1} <div data-resize-horizontal=${i} class='${datum}'></div>`;
         counterEl.appendChild(divEl);
