@@ -1,16 +1,15 @@
 import { ROWS_LENGTH, COLUMNS_LENGTH } from './variables';
 
 function createTable(rows, columns) {
-
-  const tableBodyEL = document.getElementById('js-table-body-blocks')
-  for (let i = 0; i < rows; i++) {
+  const tableBodyEL = document.getElementById('js-table-body-blocks');
+  for (let i = 0; i < columns; i++) {
     const divEl = document.createElement('div');
-    for (let j = 0; j < columns; j++) {
-      const createCellEl = document.createElement('span');
+    for (let j = 0; j < rows; j++) {
+      const createCellEl = document.createElement('div');
       createCellEl.classList.add('tab');
-      createCellEl.setAttribute('contenteditable', 'true' );
-      createCellEl.setAttribute('data-col', i.toString() );
-      createCellEl.setAttribute('data-row', j.toString() );
+      createCellEl.setAttribute('contenteditable', 'true');
+      createCellEl.setAttribute('data-col', i.toString());
+      createCellEl.setAttribute('data-row', j.toString());
       createCellEl.id = `js-table-body-${i}-${j}`;
       divEl.appendChild(createCellEl);
     }
@@ -18,17 +17,15 @@ function createTable(rows, columns) {
   }
 }
 
-function createTableHead( documentSelector, classNames, idName, datum ) {
-
-  const counterEl = document.getElementById(documentSelector);
+function createTableHead(documentSelectors, classNames, datum) {
+  const counterEl = document.getElementById(documentSelectors);
   switch (datum) {
     case 'vertical-line':
       for (let i = 0; i < COLUMNS_LENGTH; i++) {
         const divEl = document.createElement('div');
-        const UpperCaseWords = String.fromCharCode(97 + i).toUpperCase();
+        const upperCaseWords = String.fromCharCode(97 + i).toUpperCase();
         divEl.classList.add(...classNames);
-        // divEl.id = `${idName}-${i}`;
-        divEl.innerHTML = `${UpperCaseWords} <div data-resize-vertical=${i} id=resize-vertical-${i} class="${datum}"></div>`;
+        divEl.innerHTML = `${upperCaseWords} <div data-resize-vertical=${i} class='${datum}'></div>`;
         counterEl.appendChild(divEl);
       }
       break;
@@ -36,8 +33,8 @@ function createTableHead( documentSelector, classNames, idName, datum ) {
       for (let i = 0; i < ROWS_LENGTH; i++) {
         const divEl = document.createElement('div');
         divEl.classList.add(...classNames);
-        // divEl.id = `${idName}-${i}`;
-        divEl.innerHTML = `${i+1} <div data-resize-horizontal=${i} class="${datum}"></div>`;
+        divEl.innerHTML = `${i
+          + 1} <div data-resize-horizontal=${i} class='${datum}'></div>`;
         counterEl.appendChild(divEl);
       }
       break;
@@ -47,19 +44,12 @@ function createTableHead( documentSelector, classNames, idName, datum ) {
   }
 }
 
-
 createTable(ROWS_LENGTH, COLUMNS_LENGTH);
 
-createTableHead(
-  'js-word-counter',
-  ['tab', 'tab--grey'],
-  'js-word',
-  'vertical-line'
-);
+createTableHead('js-word-counter', ['tab', 'tab--grey'], 'vertical-line');
 
 createTableHead(
   'js-number-counter',
   ['tab', 'tab--small', 'tab--grey'],
-  'js-number',
-  'horizontal-line'
+  'horizontal-line',
 );

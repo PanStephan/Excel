@@ -37,16 +37,6 @@ config.module.rules.push({
     use: ["pug-loader"] 
 })
 
-// config.module.rules.push({
-//   rules: [
-//     {
-//       test: /\.js$/,
-//       loader: "babel-loader",
-//       exclude: /(node_modules)/
-//     }
-//   ]
-// })
-
 config.module.rules.push({ 
     test: /\.(sa|sc|c)ss$/i, 
     use: ExtractTextPlugin.extract({ 
@@ -57,10 +47,10 @@ config.module.rules.push({
 
 config.module.rules.push({ 
     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file-loader',
+      loader: 'url-loader',
       options: {
-      name: '[name].[ext]',
-      outputPath: 'fonts/'
+        name: '[hash].[ext]',
+        outputPath: './fonts/'
     }
 })
 
@@ -102,7 +92,6 @@ config.module.rules.push({
  * Plugins
  * 
  */
-
 
 
 config.plugins.push(new HtmlWebpackPlugin({ filename: 'index.html', template: 'src/views/index.pug' }))
