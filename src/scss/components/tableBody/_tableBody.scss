@@ -1,4 +1,5 @@
 .table-body {
+  overflow: scroll;
   &__grid-area {
     display: flex;
   }
@@ -8,32 +9,36 @@
 }
 
 .empty-tab {
-  display: inline-block;
+  flex: 0 0 auto;
   height: 35px;
-  width: 35px;
+  width: 40px;
   background-color: $grey--light;
 }
 
 .word-counter {
+  flex: 0 0 auto;
   display: flex;
 }
 
 .tab {
+  flex: 0 0 auto;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid $black;
   height: 20px;
-  width: 60px;
+  width: 100px;
+  min-width: 40px;
+  min-height: 15px;
   &--grey {
     height: 35px;
-    width: 60px;
+    width: 100px;
     background-color: $grey--light;
   }
   &--small {
-    height: 20px;
-    width: 35px;
+    height:20px;
+    width: 40px;
   }
 }
 
@@ -55,7 +60,7 @@
   bottom: 0;
   height: 3px;
   cursor: row-resize;
-  width: 35px;
+  width: 40px;
   &:hover {
     background-color: $blue;
   }

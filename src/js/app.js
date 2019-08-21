@@ -1,2 +1,2 @@
 import './tableGenerator';
-import './rowSizeController';
+import './resizeController';
